@@ -1,0 +1,91 @@
+WARNING: scikit-surprise not installed. SVD/SVD++ will fall back to NMF.
+INFO:     127.0.0.1:59932 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62467 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58197 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING: No FAISS index found. Candidates will be empty.
+WARNING: No ranker model found. Scores will be zero.
+INFO:     127.0.0.1:62757 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58741 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58741 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51651 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60041 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60041 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49289 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49289 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61150 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52058 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64184 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64184 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62815 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62815 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63142 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63142 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51745 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51745 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60602 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60602 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52197 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52930 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52930 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49968 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49968 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58910 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58911 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58644 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58644 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49675 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49673 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58344 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58344 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53632 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53633 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62012 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62013 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52205 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52206 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59233 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59234 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59235 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59236 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54773 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54774 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64687 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59485 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59486 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51569 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51570 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61926 - "GET /recommend/v2/MEM25032026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:61927 - "GET /recommend/v2/MEM25032026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:63104 - "GET /recommend/v2/MEM25032026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:63103 - "GET /recommend/v2/MEM25032026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56482 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60718 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60717 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58081 - "GET /recommend/v2/MEM09042026001 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58082 - "GET /recommend/v2/MEM09042026001?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59890 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:59889 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:60797 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:57456 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:57457 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:54274 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:54273 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:51204 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:65419 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:53428 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:53429 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:49264 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:49265 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:52076 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:60618 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:60619 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:63431 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:63432 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56815 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:54846 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:54845 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:58992 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:58993 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:50872 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:55337 - "GET /recommend/v2/MEM03052026001?limit=15 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:55338 - "GET /recommend/v2/MEM03052026001 HTTP/1.1" 500 Internal Server Error

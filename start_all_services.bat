@@ -1,0 +1,1 @@
+@echo off`ncd /d c:\Users\sayan\OneDrive\Desktop\GoAndStudy\goandstudybackend`nstart "Backend" cmd /k "mvn spring-boot:run"`ncd /d c:\Users\sayan\OneDrive\Desktop\GoAndStudy\goandstudyrealtime`nstart "Realtime" cmd /k "node server.js"`ncd /d c:\Users\sayan\OneDrive\Desktop\GoAndStudy\goandstudyfrontend`nstart "Frontend" cmd /k "npm run dev"

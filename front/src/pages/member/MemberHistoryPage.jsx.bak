@@ -1,0 +1,17 @@
+import React from 'react';
+import PageTransition from '../../components/shared/PageTransition';
+import { History, Book, Calendar } from 'lucide-react';
+
+const MemberHistoryPage = () => (
+  <PageTransition>
+    <div className="p-8 space-y-8">
+      <h1 className="text-3xl font-display font-bold">Reading History</h1>
+      <div className="bg-white border border-gray-100 p-12 text-center text-gray-400">
+        <History size={48} className="mx-auto mb-4 opacity-20" />
+        <p>No historical records found for your account.</p>
+      </div>
+    </div>
+  </PageTransition>
+);
+
+export default MemberHistoryPage;

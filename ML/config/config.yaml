@@ -1,0 +1,61 @@
+clickhouse:
+  host: localhost
+  port: 8123
+  username: default
+  password: ""
+  database: library_dw
+
+redis:
+  host: localhost
+  port: 6379
+  db: 0
+  ttl_user_seconds: 300
+  ttl_book_seconds: 600
+
+model:
+  recommender:
+    model_path: "models/recommender/nmf_model.joblib"
+    n_factors: 50
+    n_epochs: 20
+    lr_all: 0.005
+    reg_all: 0.02
+  
+  xgboost_ranker:
+    model_path: "models/xgboost_ranker/ranker.json"
+    feature_importance_path: "models/xgboost_ranker/feature_importance.json"
+    
+  two_tower:
+    user_tower_path: "models/two_tower/user_tower"
+    item_tower_path: "models/two_tower/item_tower"
+    embeddings_path: "models/two_tower/item_embeddings.npy"
+    book_ids_path: "models/two_tower/book_ids.json"
+    embedding_dim: 64
+    
+  session_transformer:
+    model_path: "models/session_transformer"
+    max_seq_len: 20
+    
+  faiss:
+    index_path: "models/faiss/twotower_index.faiss"
+    als_index_path: "models/faiss/als_index.faiss"
+
+pipeline:
+  candidate_k: 200
+  top_n: 5
+  similar_n: 10
+  latency_budget_ms: 100
+  cold_start_threshold: 3
+  exploration_rate: 0.1
+  max_per_genre: 3
+  freshness_boost: 1.1
+  freshness_days: 30
+
+monitoring:
+  prometheus_port: 9090
+  metrics_endpoint: "/metrics"
+  log_level: INFO
+
+ab_testing:
+  enabled: true
+  default_split: 0.5
+

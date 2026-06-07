@@ -1,0 +1,227 @@
+package com.goandstudybackend.service;
+
+import com.goandstudybackend.dto.response.MemberRecommendationResponse;
+import com.goandstudybackend.dto.response.MlRecommendationResponse;
+import com.goandstudybackend.entity.Author;
+import com.goandstudybackend.entity.Book;
+import com.goandstudybackend.entity.BookCategory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class MlRecommendationService {
+
+    private final RestTemplate restTemplate;
+    private final BookService bookService;
+    private static final String ML_SERVICE_V2_URL = "http://127.0.0.1:8001/recommend/v2";
+
+    /**
+     * Fetches recommendations from the production ML v2 service (2-param overload for compatibility).
+     */
+    public MlRecommendationResponse getRecommendations(String userId, int limit) {
+        String url = ML_SERVICE_V2_URL + "/" + userId + "?limit=" + limit;
+        log.info("Calling ML v2 service (2-param): {}", url);
+
+        try {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> response = restTemplate.getForObject(url, Map.class);
+
+            if (response == null) {
+                log.warn("ML v2 returned null for user {}", userId);
+                return MlRecommendationResponse.builder()
+                    .user_id(userId)
+                    .recommendations(List.of())
+                    .build();
+            }
+
+            @SuppressWarnings("unchecked")
+            List<Map<String, Object>> recs = (List<Map<String, Object>>) response.get("recommendations");
+            List<MlRecommendationResponse.MlBookRecommendation> recommendations = parseMlRecommendations(recs);
+
+            return MlRecommendationResponse.builder()
+                .user_id(userId)
+                .recommendations(recommendations)
+                .build();
+        } catch (RestClientException e) {
+            log.error("ML v2 service unavailable for user {}: {}", userId, e.getMessage());
+            return MlRecommendationResponse.builder()
+                .user_id(userId)
+                .recommendations(List.of())
+                .build();
+        }
+    }
+
+    private List<MlRecommendationResponse.MlBookRecommendation> parseMlRecommendations(List<Map<String, Object>> raw) {
+        if (raw == null) return List.of();
+        return raw.stream().map(this::toMlBookRec).toList();
+    }
+
+    private MlRecommendationResponse.MlBookRecommendation toMlBookRec(Map<String, Object> m) {
+        return MlRecommendationResponse.MlBookRecommendation.builder()
+            .book_id((String) m.get("book_id"))
+            .title((String) m.get("title"))
+            .author((String) m.get("author"))
+            .predicted_rating(m.get("predicted_rating") instanceof Number n ? n.doubleValue() : 0.0)
+            .build();
+    }
+
+    /**
+     * Fetches recommendations from the production ML v2 service.
+     * Returns structured top + similar sections with full book metadata.
+     */
+    public MemberRecommendationResponse getRecommendations(String userId, int topN, int similarN) {
+        String url = ML_SERVICE_V2_URL + "/" + userId;
+        log.info("Calling ML v2 service: {}", url);
+
+        try {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> response = restTemplate.getForObject(url, Map.class);
+
+            if (response == null) {
+                log.warn("ML v2 returned null for user {}", userId);
+                return fallbackResponse(userId);
+            }
+
+            @SuppressWarnings("unchecked")
+            List<Map<String, Object>> topRaw = (List<Map<String, Object>>) response.get("top");
+            if (topRaw == null) {
+                topRaw = (List<Map<String, Object>>) response.get("top_recommendations");
+            }
+            @SuppressWarnings("unchecked")
+            List<Map<String, Object>> similarRaw = (List<Map<String, Object>>) response.get("similar");
+            if (similarRaw == null) {
+                similarRaw = (List<Map<String, Object>>) response.get("you_may_also_like");
+            }
+
+            return MemberRecommendationResponse.builder()
+                    .top(parseItems(topRaw))
+                    .similar(parseItems(similarRaw))
+                    .modelVersion((String) response.getOrDefault("model_version", "unknown"))
+                    .branch((String) response.getOrDefault("branch", "control"))
+                    .servedFromCache(Boolean.TRUE.equals(response.get("served_from_cache")))
+                    .fallbackToPopular(Boolean.TRUE.equals(response.get("cold_start")) || response.get("fallback") != null)
+                    .latencyMs(((Number) response.getOrDefault("latency_ms", 0)).longValue())
+                    .build();
+
+        } catch (RestClientException e) {
+            log.error("ML v2 service unavailable for user {}: {}", userId, e.getMessage());
+            return fallbackResponse(userId);
+        }
+    }
+
+    /**
+     * Submit feedback (click/borrow/view) to the ML service for online learning.
+     */
+    public void submitFeedback(String userId, String bookId, String action) {
+        String url = ML_SERVICE_V2_URL + "/feedback";
+        Map<String, String> payload = new HashMap<>();
+        payload.put("user_id", userId);
+        payload.put("book_id", bookId);
+        payload.put("action", action); // "click", "borrow", "view"
+
+        try {
+            restTemplate.postForEntity(url, payload, String.class);
+            log.debug("Feedback submitted: user={}, book={}, action={}", userId, bookId, action);
+        } catch (RestClientException e) {
+            log.warn("Failed to submit feedback to ML service: {}", e.getMessage());
+        }
+    }
+
+    private List<MemberRecommendationResponse.RecommendationItem> parseItems(List<Map<String, Object>> raw) {
+        if (raw == null) return List.of();
+        return raw.stream().map(this::toItem).toList();
+    }
+
+    @SuppressWarnings("unchecked")
+    private MemberRecommendationResponse.RecommendationItem toItem(Map<String, Object> m) {
+        String bookId = (String) m.get("book_id");
+        String title = (String) m.get("title");
+        String author = (String) m.get("author");
+        String coverImageUrl = (String) m.get("cover_image_url");
+
+        // If missing metadata, try to enrich from BookService
+        if (isBlank(title) || isBlank(author) || isBlank(coverImageUrl)) {
+            try {
+                Map<String, Object> bookDetail = bookService.getBookById(bookId);
+                if (bookDetail != null && bookDetail.get("book") instanceof Book b) {
+                    if (isBlank(title)) title = b.getTitle();
+                    if (isBlank(coverImageUrl)) coverImageUrl = b.getCoverImageUrl();
+                    if (isBlank(author) && bookDetail.get("authors") instanceof List<?> authors && !authors.isEmpty()) {
+                        Object first = authors.get(0);
+                        if (first instanceof Author a) {
+                            author = a.getName();
+                        }
+                    }
+                    if (isBlank((String) m.getOrDefault("genre", "")) && bookDetail.get("categories") instanceof List<?> categories && !categories.isEmpty()) {
+                        Object first = categories.get(0);
+                        if (first instanceof BookCategory c) {
+                            m.put("genre", c.getName());
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                log.debug("Could not enrich book {} from catalog: {}", bookId, e.getMessage());
+            }
+        }
+
+        return MemberRecommendationResponse.RecommendationItem.builder()
+                .bookId(bookId)
+                .title(title != null ? title : "Unknown Title")
+                .author(author != null ? author : "Unknown Author")
+                .coverImageUrl(coverImageUrl != null ? coverImageUrl : "")
+                .score(((Number) m.getOrDefault("score", 0.0)).doubleValue())
+                .reason((String) m.getOrDefault("reason", ""))
+                .genre((String) m.getOrDefault("genre", ""))
+                .availableCopies(((Number) m.getOrDefault("available_copies", 0)).intValue())
+                .twoTowerScore(((Number) m.getOrDefault("two_tower_score", 0.0)).doubleValue())
+                .rankerScore(((Number) m.getOrDefault("ranker_score", 0.0)).doubleValue())
+                .isExploration(Boolean.TRUE.equals(m.get("is_exploration")))
+                .build();
+    }
+
+    private boolean isBlank(String value) {
+        return value == null || value.trim().isEmpty();
+    }
+
+    private MemberRecommendationResponse fallbackResponse(String userId) {
+        log.info("Serving fallback popular/trending recommendations for user {}", userId);
+        Map<String, Object> featured = bookService.getFeaturedBooks();
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> trending = (List<Map<String, Object>>) featured.getOrDefault("trending", List.of());
+
+        List<MemberRecommendationResponse.RecommendationItem> items = trending.stream()
+                .limit(5)
+                .map(b -> MemberRecommendationResponse.RecommendationItem.builder()
+                        .bookId((String) b.get("bookId"))
+                        .title((String) b.getOrDefault("title", "Trending Book"))
+                        .author((String) b.getOrDefault("author", ""))
+                        .coverImageUrl((String) b.getOrDefault("coverImageUrl", ""))
+                        .score(1.0)
+                        .reason("Trending now")
+                        .genre((String) b.getOrDefault("genre", ""))
+                        .availableCopies(((Number) b.getOrDefault("availableCopies", 0)).intValue())
+                        .isExploration(false)
+                        .build())
+                .toList();
+
+        return MemberRecommendationResponse.builder()
+                .top(items)
+                .similar(List.of())
+                .modelVersion("fallback_popular")
+                .branch("control")
+                .servedFromCache(false)
+                .fallbackToPopular(true)
+                .latencyMs(0)
+                .build();
+    }
+}

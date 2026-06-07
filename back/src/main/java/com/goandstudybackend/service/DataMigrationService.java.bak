@@ -1,0 +1,87 @@
+package com.goandstudybackend.service;
+
+import com.goandstudybackend.entity.Loan;
+import com.goandstudybackend.enumeration.LoanStatus;
+import com.goandstudybackend.repository.LoanRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class DataMigrationService {
+
+    private final LoanRepository loanRepository;
+    private boolean migrationRun = false;
+
+@EventListener(ApplicationReadyEvent.class)
+    public void migrateLoanStatus() {
+        // This migration touches existing Loan documents and can fail if older
+        // documents have inconsistent types. To keep backend boot reliable,
+        // disable it by default.
+        boolean enabled = Boolean.parseBoolean(System.getProperty("goandstudy.migration.loanStatus.enabled", "false"));
+        if (!enabled) {
+            log.info("Loan status migration disabled (set -Dgoandstudy.migration.loanStatus.enabled=true to enable)");
+            return;
+        }
+
+        if (migrationRun) return;
+        migrationRun = true;
+        log.info("Starting loan status migration");
+
+        // Batch processing with pagination (scale-safe)
+        Pageable pageable = PageRequest.of(0, 1000);
+        int page = 0;
+        while (true) {
+            Slice<Loan> loans = loanRepository.findAll(pageable);
+            if (loans.isEmpty()) break;
+
+            loans.forEach(loan -> {
+                String statusStr = loan.getStatus();
+                if (loan.getReturnedAt() != null && !LoanStatus.RETURNED.name().equals(statusStr)) {
+                    loan.setStatus(LoanStatus.RETURNED.name());
+                    loan.setIsOverdue(false);
+                    loanRepository.save(loan);
+                    log.debug("Repaired returned loan {}", loan.getId());
+                    return;
+                }
+                if (loan.getReturnedAt() == null
+                        && loan.getDueDate() != null
+                        && loan.getDueDate().isBefore(LocalDateTime.now())
+                        && List.of(LoanStatus.ISSUED.name(), LoanStatus.RENEWED.name(), "Issued", "Renewed").contains(statusStr)) {
+                    loan.setStatus(LoanStatus.OVERDUE.name());
+                    loan.setIsOverdue(true);
+                    loanRepository.save(loan);
+                    log.debug("Marked overdue loan {}", loan.getId());
+                    return;
+                }
+                if (statusStr != null) {
+                    try {
+                        // Validate it's a valid LoanStatus enum value
+                        LoanStatus.valueOf(statusStr);
+                        // Keep the existing valid status string
+                        loanRepository.save(loan);
+                        log.debug("Migrated loan {}", loan.getId());
+                    } catch (IllegalArgumentException e) {
+                        loan.setStatus(LoanStatus.ISSUED.name());
+                        loanRepository.save(loan);
+                        log.warn("Defaulted loan {} to ISSUED", loan.getId());
+                    }
+                }
+            });
+            page++;
+            pageable = pageable.next();
+        }
+        log.info("Loan status migration complete");
+    }
+}
+

@@ -1,0 +1,6 @@
+user_id,name,cluster,cluster_name,total_loans,total_overdue,overdue_rate,total_fines_incurred,total_searches,total_ai_calls,age,pca_x,pca_y
+MEM09042026001,Sayantan Jana,2,Regular Borrowers,8,0,0.0,0.0,17,0,0.0,1.109347712746853,-1.0734729125801434
+MEM25032026001,Sayantan Jana,0,Regular Borrowers,6,0,0.0,0.0,62,0,0.0,1.848313656407597,0.878171156262267
+MEM25032026002,Verify Member,1,Casual / New,4,0,0.0,0.0,0,0,0.0,-0.6115567481298525,-0.36902112309352003
+MEM27032026001,Test Member,1,Casual / New,2,0,0.0,0.0,0,0,0.0,-1.217895810720685,0.23731793949731259
+MEM27032026002,Sayantan Jana,1,Casual / New,2,0,0.0,0.0,3,0,0.0,-1.128208810303913,0.3270049399140847

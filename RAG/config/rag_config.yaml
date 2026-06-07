@@ -1,0 +1,119 @@
+# RAG Service Configuration
+service:
+  name: "goandstudy-rag"
+  version: "1.0.0"
+  port: 8002
+  host: "0.0.0.0"
+  debug: false
+
+# MongoDB Configuration
+mongodb:
+  uri: "${MONGODB_URI:mongodb://localhost:27017}"
+  database: "goandstudy"
+  collections:
+    knowledge_base: "knowledge_base"
+    knowledge_chunks: "knowledge_chunks"
+    reflection_edges: "reflection_edges"
+    rag_evaluations: "rag_evaluations"
+    chatbot_sessions: "chatbot_sessions"
+    chatbot_feedbacks: "chatbot_feedbacks"
+    ai_logs: "ai_logs"
+  vector_search:
+    index_name: "knowledge_chunk_index"
+    embedding_path: "embedding"
+    dimensions: 384
+    similarity: "cosine"  # cosine, euclidean, dotProduct
+    num_candidates: 100
+
+# LLM Configuration
+llm:
+  provider: "nvidia"  # nvidia, openai, local
+  model: "meta/llama-3.1-8b-instruct"
+  api_base: "${NVIDIA_API_BASE:https://integrate.api.nvidia.com/v1}"
+  api_key: "${NVIDIA_API_KEY:}"
+  max_tokens: 1024
+  temperature: 0.7
+  top_p: 0.9
+  timeout: 30
+
+# Embedding Configuration
+embeddings:
+  model: "sentence-transformers/all-MiniLM-L6-v2"
+  dimensions: 384
+  batch_size: 32
+  device: "cpu"  # cpu, cuda
+  normalize: true
+
+# NLP Configuration
+nlp:
+  spacy_model: "en_core_web_sm"
+  chunk_size: 512
+  chunk_overlap: 128
+  min_chunk_length: 50
+  extract_entities: true
+  extract_keywords: true
+  keyword_count: 10
+  summary_max_length: 256
+
+# Knowledge Reflection Configuration
+reflection:
+  enabled: true
+  similarity_threshold: 0.75
+  entity_overlap_threshold: 0.3
+  max_links_per_document: 10
+  insight_synthesis_enabled: true
+  daily_reflection_time: "02:00"
+  min_documents_for_reflection: 5
+
+# Self-Learning Configuration
+self_learning:
+  enabled: true
+  feedback_threshold_for_retrain: 50
+  evaluation_batch_size: 100
+  active_learning_enabled: true
+  low_confidence_threshold: 0.5
+  retrain_schedule: "weekly"
+  metrics:
+    - "faithfulness"
+    - "answer_relevancy"
+    - "context_precision"
+    - "context_recall"
+
+# RAG Pipeline Configuration
+rag:
+  top_k_retrieval: 10
+  top_k_rerank: 5
+  max_context_length: 3000
+  include_citations: true
+  include_sources: true
+  streaming: true
+  fallback_to_books: true
+  system_prompt: |
+    You are GoAndStudy's AI Library Assistant. You help members find books, 
+    answer questions about the library, and provide reading recommendations.
+    
+    Guidelines:
+    - Use ONLY the provided context to answer questions
+    - If the context doesn't contain the answer, say so honestly
+    - Cite specific sources when providing information
+    - Be concise but helpful
+    - If asked about book availability, check context carefully
+    - Recommend related books when appropriate
+
+# Document Processing
+documents:
+  supported_formats:
+    - "pdf"
+    - "docx"
+    - "txt"
+    - "md"
+    - "html"
+  max_file_size_mb: 50
+  extract_metadata: true
+  ocr_enabled: false
+
+# Monitoring
+monitoring:
+  prometheus_enabled: true
+  metrics_port: 9090
+  log_level: "INFO"

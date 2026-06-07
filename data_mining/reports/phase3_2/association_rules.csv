@@ -1,0 +1,65 @@
+antecedents,consequents,support,confidence,lift
+A Journey To The Center of the Earth,Artificial Intelligence: A Modern Approach ,0.2,1.0,5.0
+Artificial Intelligence: A Modern Approach ,A Journey To The Center of the Earth,0.2,1.0,5.0
+Wings of Fire,A Journey To The Center of the Earth,0.2,1.0,5.0
+A Journey To The Center of the Earth,Wings of Fire,0.2,1.0,5.0
+Artificial Intelligence: A Modern Approach ,Wings of Fire,0.2,1.0,5.0
+Wings of Fire,Artificial Intelligence: A Modern Approach ,0.2,1.0,5.0
+Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management,0.2,1.0,5.0
+Fundamentals of Database Management,Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea,Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Data Mining and Data Warehousing: Principles and Practical Techniques,Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej,Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Data Mining and Data Warehousing: Principles and Practical Techniques,ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+Fundamentals of Database Management,ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej,Fundamentals of Database Management,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea,Fundamentals of Database Management,0.2,1.0,5.0
+Fundamentals of Database Management,Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Wings of Fire,Artificial Intelligence: A Modern Approach ; A Journey To The Center of the Earth,0.2,1.0,5.0
+Artificial Intelligence: A Modern Approach ,Wings of Fire; A Journey To The Center of the Earth,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea,ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej,Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Wings of Fire; A Journey To The Center of the Earth,Artificial Intelligence: A Modern Approach ,0.2,1.0,5.0
+Artificial Intelligence: A Modern Approach ; A Journey To The Center of the Earth,Wings of Fire,0.2,1.0,5.0
+Wings of Fire; Artificial Intelligence: A Modern Approach ,A Journey To The Center of the Earth,0.2,1.0,5.0
+A Journey To The Center of the Earth,Wings of Fire; Artificial Intelligence: A Modern Approach ,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management,0.2,1.0,5.0
+Fundamentals of Database Management,ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Fundamentals of Database Management; ISC Computer Science with Java and Bluej,Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Fundamentals of Database Management; Data Mining and Data Warehousing: Principles and Practical Techniques,ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej,Fundamentals of Database Management; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management; ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+Fundamentals of Database Management; Data Mining and Data Warehousing: Principles and Practical Techniques,Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea,Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea,Fundamentals of Database Management; ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej,Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management,0.2,1.0,5.0
+Fundamentals of Database Management,Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea,Fundamentals of Database Management; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea,ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej,Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Data Mining and Data Warehousing: Principles and Practical Techniques,Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea,ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+Fundamentals of Database Management; ISC Computer Science with Java and Bluej,Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,Fundamentals of Database Management,0.2,1.0,5.0
+Fundamentals of Database Management,Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+Fundamentals of Database Management; Data Mining and Data Warehousing: Principles and Practical Techniques,Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,Fundamentals of Database Management; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+Fundamentals of Database Management; ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management,0.2,1.0,5.0
+Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea,ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Fundamentals of Database Management; ISC Computer Science with Java and Bluej,Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Fundamentals of Database Management,Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea,Fundamentals of Database Management; ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management; ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej; Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea,0.2,1.0,5.0
+ISC Computer Science with Java and Bluej,Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea; Data Mining and Data Warehousing: Principles and Practical Techniques,0.2,1.0,5.0
+Data Mining and Data Warehousing: Principles and Practical Techniques,Fundamentals of Database Management; Twenty Thousand Leagues Under the Sea; ISC Computer Science with Java and Bluej,0.2,1.0,5.0
+The Alchemist,Ancient India,0.2,0.33333333333333337,1.6666666666666667
+Ancient India,The Alchemist,0.2,1.0,1.6666666666666667

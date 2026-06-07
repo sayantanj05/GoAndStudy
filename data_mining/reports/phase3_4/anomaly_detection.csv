@@ -1,0 +1,11 @@
+d.user_id,name,email,total_loans,overdue_loans,total_fines,total_searches,wishlist_items,total_reviews,avg_rating,anomaly_score,anomaly
+MEM27032026001,Test Member,testmember1@gmail.com,2,0,0.0,1,1,1,0.0,1,False
+MEM10042026001,Arijit Das,arijit@gmail.com,1,0,0.0,2,1,1,0.0,1,False
+MEM18042026002,Test User,test_b4a04f44@example.com,1,0,0.0,1,1,1,0.0,1,False
+MEM27032026002,Sayantan Jana,sayantan08@gmail.com,2,0,0.0,3,1,1,0.0,1,False
+MEM25032026001,Sayantan Jana,sayantanj08@gmail.com,6,0,0.0,62,3,1,0.0,1,False
+MEM18042026001,Test User Five,testuser2026_5@gmail.com,1,0,0.0,1,1,1,0.0,1,False
+MEM25032026002,Verify Member,verify.member.20260325234537@example.com,4,0,0.0,1,1,1,0.0,1,False
+MEM05042026001,Test User,test123@test.com,1,0,0.0,1,1,1,0.0,1,False
+MEM18042026003,Test User Login,test_member_login@example.com,1,0,0.0,1,1,1,0.0,1,False
+MEM09042026001,Sayantan Jana,sayantanj05@gmail.com,8,0,0.0,43,1,3,5.0,-1,True
