@@ -3,7 +3,8 @@ FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
 # Copy pom first to leverage Docker layer caching
-COPY pom.xml ./
+COPY back/pom.xml ./pom.xml
+
 
 # Download dependencies (ignore tests)
 # (no mvnw in repo, so we just run Maven from the base image)
@@ -21,6 +22,10 @@ RUN mvn -q -DskipTests dependency:go-offline || mvn -q -DskipTests dependency:re
 
 # Copy source
 COPY src ./src
+
+
+
+
 
 # Build jar
 RUN mvn -q -DskipTests package
