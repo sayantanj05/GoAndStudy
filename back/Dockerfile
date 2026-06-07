@@ -7,7 +7,16 @@ COPY pom.xml ./
 
 # Download dependencies (ignore tests)
 # (no mvnw in repo, so we just run Maven from the base image)
+# Maven isn't always available as a binary in the Render build container.
+# Use the Maven wrapper if present; otherwise fall back to plain `mvn`.
+# (Your repo currently has no mvnw, so `mvn` must exist in the base image.)
+# If Maven isn't installed, install it.
+# Eclipse Temurin Debian/Ubuntu-based images usually have apt-get.
+RUN (command -v mvn >/dev/null 2>&1 && echo "mvn exists" ) || (apt-get update && apt-get install -y maven)
+
 RUN mvn -q -DskipTests dependency:go-offline || mvn -q -DskipTests dependency:resolve
+
+
 
 
 # Copy source
